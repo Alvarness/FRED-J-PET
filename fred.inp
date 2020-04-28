@@ -1,0 +1,17 @@
+include: JPetModular.txt
+
+region: phantom; L=[1,1,1] ; pivot=[0.5,0.5,0.5] ; voxels = [11,11,11] ; material = vacuum
+
+lplotray=t
+
+lDefaultField=f
+
+/randSeedRoot=5527596984679132034
+
+region: room ; material = vacuum
+
+
+deliver: usersource 1e2 arg2
+/deliver: usersource 1e2 arg2
+/deliver: usersource 1e2 arg2
+

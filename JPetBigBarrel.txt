@@ -1,0 +1,384 @@
+region: scintillator_1_0 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_0 rotate z 0.0 
+region: scintillator_1_1 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_1 rotate z 7.5 
+region: scintillator_1_2 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_2 rotate z 15.0 
+region: scintillator_1_3 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_3 rotate z 22.5 
+region: scintillator_1_4 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_4 rotate z 30.0 
+region: scintillator_1_5 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_5 rotate z 37.5 
+region: scintillator_1_6 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_6 rotate z 45.0 
+region: scintillator_1_7 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_7 rotate z 52.5 
+region: scintillator_1_8 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_8 rotate z 60.0 
+region: scintillator_1_9 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_9 rotate z 67.5 
+region: scintillator_1_10 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_10 rotate z 75.0 
+region: scintillator_1_11 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_11 rotate z 82.5 
+region: scintillator_1_12 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_12 rotate z 90.0 
+region: scintillator_1_13 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_13 rotate z 97.5 
+region: scintillator_1_14 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_14 rotate z 105.0 
+region: scintillator_1_15 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_15 rotate z 112.5 
+region: scintillator_1_16 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_16 rotate z 120.0 
+region: scintillator_1_17 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_17 rotate z 127.5 
+region: scintillator_1_18 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_18 rotate z 135.0 
+region: scintillator_1_19 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_19 rotate z 142.5 
+region: scintillator_1_20 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_20 rotate z 150.0 
+region: scintillator_1_21 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_21 rotate z 157.5 
+region: scintillator_1_22 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_22 rotate z 165.0 
+region: scintillator_1_23 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_23 rotate z 172.5 
+region: scintillator_1_24 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_24 rotate z 180.0 
+region: scintillator_1_25 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_25 rotate z 187.5 
+region: scintillator_1_26 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_26 rotate z 195.0 
+region: scintillator_1_27 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_27 rotate z 202.5 
+region: scintillator_1_28 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_28 rotate z 210.0 
+region: scintillator_1_29 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_29 rotate z 217.5 
+region: scintillator_1_30 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_30 rotate z 225.0 
+region: scintillator_1_31 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_31 rotate z 232.5 
+region: scintillator_1_32 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_32 rotate z 240.0 
+region: scintillator_1_33 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_33 rotate z 247.5 
+region: scintillator_1_34 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_34 rotate z 255.0 
+region: scintillator_1_35 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_35 rotate z 262.5 
+region: scintillator_1_36 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_36 rotate z 270.0 
+region: scintillator_1_37 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_37 rotate z 277.5 
+region: scintillator_1_38 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_38 rotate z 285.0 
+region: scintillator_1_39 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_39 rotate z 292.5 
+region: scintillator_1_40 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_40 rotate z 300.0 
+region: scintillator_1_41 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_41 rotate z 307.5 
+region: scintillator_1_42 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_42 rotate z 315.0 
+region: scintillator_1_43 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_43 rotate z 322.5 
+region: scintillator_1_44 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_44 rotate z 330.0 
+region: scintillator_1_45 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_45 rotate z 337.5 
+region: scintillator_1_46 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_46 rotate z 345.0 
+region: scintillator_1_47 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[42.5, 0, 0] ; material = water
+transform: scintillator_1_47 rotate z 352.5 
+region: scintillator_2_0 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_0 rotate z 3.75 
+region: scintillator_2_1 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_1 rotate z 11.25 
+region: scintillator_2_2 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_2 rotate z 18.75 
+region: scintillator_2_3 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_3 rotate z 26.25 
+region: scintillator_2_4 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_4 rotate z 33.75 
+region: scintillator_2_5 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_5 rotate z 41.25 
+region: scintillator_2_6 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_6 rotate z 48.75 
+region: scintillator_2_7 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_7 rotate z 56.25 
+region: scintillator_2_8 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_8 rotate z 63.75 
+region: scintillator_2_9 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_9 rotate z 71.25 
+region: scintillator_2_10 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_10 rotate z 78.75 
+region: scintillator_2_11 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_11 rotate z 86.25 
+region: scintillator_2_12 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_12 rotate z 93.75 
+region: scintillator_2_13 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_13 rotate z 101.25 
+region: scintillator_2_14 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_14 rotate z 108.75 
+region: scintillator_2_15 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_15 rotate z 116.25 
+region: scintillator_2_16 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_16 rotate z 123.75 
+region: scintillator_2_17 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_17 rotate z 131.25 
+region: scintillator_2_18 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_18 rotate z 138.75 
+region: scintillator_2_19 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_19 rotate z 146.25 
+region: scintillator_2_20 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_20 rotate z 153.75 
+region: scintillator_2_21 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_21 rotate z 161.25 
+region: scintillator_2_22 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_22 rotate z 168.75 
+region: scintillator_2_23 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_23 rotate z 176.25 
+region: scintillator_2_24 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_24 rotate z 183.75 
+region: scintillator_2_25 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_25 rotate z 191.25 
+region: scintillator_2_26 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_26 rotate z 198.75 
+region: scintillator_2_27 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_27 rotate z 206.25 
+region: scintillator_2_28 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_28 rotate z 213.75 
+region: scintillator_2_29 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_29 rotate z 221.25 
+region: scintillator_2_30 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_30 rotate z 228.75 
+region: scintillator_2_31 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_31 rotate z 236.25 
+region: scintillator_2_32 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_32 rotate z 243.75 
+region: scintillator_2_33 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_33 rotate z 251.25 
+region: scintillator_2_34 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_34 rotate z 258.75 
+region: scintillator_2_35 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_35 rotate z 266.25 
+region: scintillator_2_36 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_36 rotate z 273.75 
+region: scintillator_2_37 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_37 rotate z 281.25 
+region: scintillator_2_38 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_38 rotate z 288.75 
+region: scintillator_2_39 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_39 rotate z 296.25 
+region: scintillator_2_40 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_40 rotate z 303.75 
+region: scintillator_2_41 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_41 rotate z 311.25 
+region: scintillator_2_42 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_42 rotate z 318.75 
+region: scintillator_2_43 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_43 rotate z 326.25 
+region: scintillator_2_44 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_44 rotate z 333.75 
+region: scintillator_2_45 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_45 rotate z 341.25 
+region: scintillator_2_46 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_46 rotate z 348.75 
+region: scintillator_2_47 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[46.75, 0, 0] ; material = water
+transform: scintillator_2_47 rotate z 356.25 
+region: scintillator_3_0 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_0 rotate z 1.875 
+region: scintillator_3_1 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_1 rotate z 5.625 
+region: scintillator_3_2 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_2 rotate z 9.375 
+region: scintillator_3_3 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_3 rotate z 13.125 
+region: scintillator_3_4 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_4 rotate z 16.875 
+region: scintillator_3_5 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_5 rotate z 20.625 
+region: scintillator_3_6 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_6 rotate z 24.375 
+region: scintillator_3_7 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_7 rotate z 28.125 
+region: scintillator_3_8 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_8 rotate z 31.875 
+region: scintillator_3_9 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_9 rotate z 35.625 
+region: scintillator_3_10 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_10 rotate z 39.375 
+region: scintillator_3_11 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_11 rotate z 43.125 
+region: scintillator_3_12 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_12 rotate z 46.875 
+region: scintillator_3_13 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_13 rotate z 50.625 
+region: scintillator_3_14 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_14 rotate z 54.375 
+region: scintillator_3_15 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_15 rotate z 58.125 
+region: scintillator_3_16 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_16 rotate z 61.875 
+region: scintillator_3_17 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_17 rotate z 65.625 
+region: scintillator_3_18 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_18 rotate z 69.375 
+region: scintillator_3_19 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_19 rotate z 73.125 
+region: scintillator_3_20 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_20 rotate z 76.875 
+region: scintillator_3_21 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_21 rotate z 80.625 
+region: scintillator_3_22 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_22 rotate z 84.375 
+region: scintillator_3_23 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_23 rotate z 88.125 
+region: scintillator_3_24 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_24 rotate z 91.875 
+region: scintillator_3_25 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_25 rotate z 95.625 
+region: scintillator_3_26 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_26 rotate z 99.375 
+region: scintillator_3_27 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_27 rotate z 103.125 
+region: scintillator_3_28 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_28 rotate z 106.875 
+region: scintillator_3_29 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_29 rotate z 110.625 
+region: scintillator_3_30 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_30 rotate z 114.375 
+region: scintillator_3_31 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_31 rotate z 118.125 
+region: scintillator_3_32 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_32 rotate z 121.875 
+region: scintillator_3_33 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_33 rotate z 125.625 
+region: scintillator_3_34 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_34 rotate z 129.375 
+region: scintillator_3_35 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_35 rotate z 133.125 
+region: scintillator_3_36 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_36 rotate z 136.875 
+region: scintillator_3_37 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_37 rotate z 140.625 
+region: scintillator_3_38 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_38 rotate z 144.375 
+region: scintillator_3_39 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_39 rotate z 148.125 
+region: scintillator_3_40 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_40 rotate z 151.875 
+region: scintillator_3_41 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_41 rotate z 155.625 
+region: scintillator_3_42 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_42 rotate z 159.375 
+region: scintillator_3_43 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_43 rotate z 163.125 
+region: scintillator_3_44 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_44 rotate z 166.875 
+region: scintillator_3_45 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_45 rotate z 170.625 
+region: scintillator_3_46 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_46 rotate z 174.375 
+region: scintillator_3_47 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_47 rotate z 178.125 
+region: scintillator_3_48 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_48 rotate z 181.875 
+region: scintillator_3_49 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_49 rotate z 185.625 
+region: scintillator_3_50 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_50 rotate z 189.375 
+region: scintillator_3_51 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_51 rotate z 193.125 
+region: scintillator_3_52 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_52 rotate z 196.875 
+region: scintillator_3_53 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_53 rotate z 200.625 
+region: scintillator_3_54 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_54 rotate z 204.375 
+region: scintillator_3_55 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_55 rotate z 208.125 
+region: scintillator_3_56 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_56 rotate z 211.875 
+region: scintillator_3_57 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_57 rotate z 215.625 
+region: scintillator_3_58 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_58 rotate z 219.375 
+region: scintillator_3_59 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_59 rotate z 223.125 
+region: scintillator_3_60 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_60 rotate z 226.875 
+region: scintillator_3_61 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_61 rotate z 230.625 
+region: scintillator_3_62 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_62 rotate z 234.375 
+region: scintillator_3_63 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_63 rotate z 238.125 
+region: scintillator_3_64 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_64 rotate z 241.875 
+region: scintillator_3_65 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_65 rotate z 245.625 
+region: scintillator_3_66 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_66 rotate z 249.375 
+region: scintillator_3_67 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_67 rotate z 253.125 
+region: scintillator_3_68 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_68 rotate z 256.875 
+region: scintillator_3_69 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_69 rotate z 260.625 
+region: scintillator_3_70 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_70 rotate z 264.375 
+region: scintillator_3_71 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_71 rotate z 268.125 
+region: scintillator_3_72 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_72 rotate z 271.875 
+region: scintillator_3_73 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_73 rotate z 275.625 
+region: scintillator_3_74 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_74 rotate z 279.375 
+region: scintillator_3_75 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_75 rotate z 283.125 
+region: scintillator_3_76 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_76 rotate z 286.875 
+region: scintillator_3_77 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_77 rotate z 290.625 
+region: scintillator_3_78 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_78 rotate z 294.375 
+region: scintillator_3_79 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_79 rotate z 298.125 
+region: scintillator_3_80 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_80 rotate z 301.875 
+region: scintillator_3_81 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_81 rotate z 305.625 
+region: scintillator_3_82 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_82 rotate z 309.375 
+region: scintillator_3_83 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_83 rotate z 313.125 
+region: scintillator_3_84 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_84 rotate z 316.875 
+region: scintillator_3_85 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_85 rotate z 320.625 
+region: scintillator_3_86 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_86 rotate z 324.375 
+region: scintillator_3_87 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_87 rotate z 328.125 
+region: scintillator_3_88 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_88 rotate z 331.875 
+region: scintillator_3_89 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_89 rotate z 335.625 
+region: scintillator_3_90 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_90 rotate z 339.375 
+region: scintillator_3_91 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_91 rotate z 343.125 
+region: scintillator_3_92 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_92 rotate z 346.875 
+region: scintillator_3_93 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_93 rotate z 350.625 
+region: scintillator_3_94 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_94 rotate z 354.375 
+region: scintillator_3_95 ; pivot=[0.5,0.5,0.5] ; L=[1.9,0.7,50] ; O=[57.5, 0, 0] ; material = water
+transform: scintillator_3_95 rotate z 358.125 
