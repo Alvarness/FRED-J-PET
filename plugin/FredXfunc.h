@@ -30,6 +30,9 @@ using namespace fred;
 
 extern "C" {
 
+float Compton(Step *stp, double energy);
+vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis);
+
 // getter functions at the begin of the step, i.e. position A
 void	getPosition_A(Step *stp, vec3dRT &pos);
 void	getDirection_A(Step *stp, vec3dRT &vel);

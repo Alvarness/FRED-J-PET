@@ -12,7 +12,7 @@
 
 template <typename T>
 class vector3d {
-private:	
+private:
 public:
 	union {
 		T v[3];
@@ -20,23 +20,23 @@ public:
 		struct { T Alpha,R,Z;}; // CYL
 		struct { T phi,theta,rho;}; // SPHER
 	};
-	
+
 	vector3d(){};
-	
+
 	vector3d(T a,T b,T c){v[0]=a;v[1]=b;v[2]=c;};
-	
+
 	vector3d(T a){v[0]=a;v[1]=a;v[2]=a;}
-	
+
 	vector3d(int n){v[0]=n;v[1]=n;v[2]=n;}
-	
+
  	vector3d(T *a){v[0]=a[0];v[1]=a[1];v[2]=a[2];}
- 	
+
 	inline T & operator[](int j){return v[j];};
 	inline const T & operator[](int j) const {return v[j];};
-	
+
 	inline void set(T x,T y,T z){v[0]=x;v[1]=y;v[2]=z;}
-	
-	
+
+
 	inline vector3d& operator=(const vector3d &a){for (int j=0;j<3;j++) v[j]=a.v[j];return *this;}
 	inline vector3d& operator+=(T a){v[0]+=a;v[1]+=a;v[2]+=a;return *this;};
 	inline vector3d& operator-=(T a){v[0]-=a;v[1]-=a;v[2]-=a;return *this;};
@@ -49,8 +49,8 @@ public:
 	inline vector3d& operator--(){v[0]--;v[1]--;v[2]--;return *this;};
 	inline vector3d& operator++(int ){v[0]++;v[1]++;v[2]++;return *this;};
 	inline vector3d& operator--(int ){v[0]--;v[1]--;v[2]--;return *this;};
-	
-	
+
+
 	inline vector3d operator-() const{return vector3d(-v[0],-v[1],-v[2]);}
 	inline vector3d operator+(const vector3d &a) const{return vector3d(v[0]+a.v[0],v[1]+a.v[1],v[2]+a.v[2]);}
 	inline vector3d operator-(const vector3d &a) const{return vector3d(v[0]-a.v[0],v[1]-a.v[1],v[2]-a.v[2]);}
@@ -61,12 +61,12 @@ public:
 	inline vector3d& operator-=(const vector3d &a){v[0]-=a.v[0];v[1]-=a.v[1];v[2]-=a.v[2];return *this;}
 	inline vector3d& operator*=(const vector3d &a){v[0]*=a.v[0];v[1]*=a.v[1];v[2]*=a.v[2];return *this;}
 	inline vector3d& operator/=(const vector3d &a){v[0]/=a.v[0];v[1]/=a.v[1];v[2]/=a.v[2];return *this;}
-    
+
 	inline vector3d operator+(T a) const{vector3d x;for (int j=0;j<3;j++) x.v[j]=v[j]+a;return x;}
 	inline vector3d operator-(T a) const{vector3d x;for (int j=0;j<3;j++) x.v[j]=v[j]-a;return x;}
 	inline vector3d operator*(T a) const{vector3d x;for (int j=0;j<3;j++) x.v[j]=v[j]*a;return x;}
 	inline vector3d operator/(T a) const{vector3d x;for (int j=0;j<3;j++) x.v[j]=v[j]/a;return x;}
-	
+
 };
 
 
@@ -81,7 +81,7 @@ ostream& operator<<(ostream &os,const vector3d<T> &v){
 template <typename T>
 inline vector3d<T> operator*(const T r,const vector3d<T> &v){return vector3d<T>(r*v[0],r*v[1],r*v[2]);}
 
-template <typename T>  
+template <typename T>
 inline T dot (const vector3d<T> &a,const vector3d<T> &b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
 
 template <typename T>
@@ -112,7 +112,7 @@ void triad(const vector3d<T> &a, vector3d<T> &n1, vector3d<T> &n2){
   }
   n1=versor(n1);
   n2=cross(v,n1);
-}	
+}
 
 typedef vector3d<real64> vec3d;
 typedef vector3d<real32> vec3dRT;
