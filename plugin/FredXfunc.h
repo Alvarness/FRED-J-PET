@@ -30,7 +30,7 @@ using namespace fred;
 
 extern "C" {
 
-float Compton(Step *stp, double energy);
+tuple<double, double, double> compton_scattering(Step *stp);
 vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis);
 
 // getter functions at the begin of the step, i.e. position A
