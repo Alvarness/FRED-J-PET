@@ -57,7 +57,7 @@ extern "C" void  UserHook_step_aft(Step *stp){
 	if(type!=GHOST_ID) lastTracked = type;
 	if(type==PHOTON_ID)   ftracks_phot<<xi<<' '<<T<<' '<<endl;
 
-	// cout<<getUID(stp)<<' '<<getParentUID(stp)<<' '<<getAncestorUID(stp)<<' '<<type<<' '<<getParticle_generation(stp)<<endl;
+	//cout<<getUID(stp)<<' '<<getParentUID(stp)<<' '<<getAncestorUID(stp)<<' '<<type<<' '<<getGeneration(stp)<<endl;
 	if(type==PHOTON_ID) {
 		setStepDeltaTime(stp,getStepLength(stp)/3e10);
 		// cout<<"time now "<<getUID(stp)<<' '<<getTime_B(stp)<<endl;
@@ -108,10 +108,14 @@ void interactionEvent_Photon(Step *stp,const vec3dRT &v0,const vec3dRT &n1,const
 	// vec3dRT rotated = rotate(vnew, 45.0*M_PI/180.0, Z);
 	vec3dRT rotated = rotate(vnew, Compton(stp, T), Z);
 	setDirection_B(stp, rotated) ;
+
+	pushParticle(stp,PHOTON_ID,T,rotated);
+	extinguishRay(stp);
+
 	// cout<<"v0 "<<vnew<<endl;
 	//pushParticle(stp,ELECTRON_ID,getKineticEnergy_A(stp)/4,v0);
 	// cout<<"ciao "<<getUID(stp)<<' '<<getKineticEnergy_A(stp)<<' '<<pol<<' '<<getTime_A(stp)<<endl;
-	// extinguishRay(stp);
+	// exit(0);
 }
 
 
@@ -202,7 +206,7 @@ extern "C" float  UserHook_Mass_Attenuation(Step *stp){
 	// NB: returns the mass attenuation coefficient of interaction in the material
 	switch(getType(stp)){
 		case PHOTON_ID:
-			return massAttenuation_photon(stp);
+			return 1;//massAttenuation_photon(stp);
 		break;
 		default: break;
 	}
