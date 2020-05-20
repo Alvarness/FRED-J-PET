@@ -86,7 +86,7 @@ float massAttenuation_photon(Step *stp){
 
 	if(currReg.rfind("scint")==0){
 		// cout<<currReg<<endl;
-		mu_rho_tot_material = 10.09443;
+		mu_rho_tot_material = 0.09443;
 
 	}
 
@@ -100,18 +100,26 @@ void interactionEvent_Photon(Step *stp,const vec3dRT &v0,const vec3dRT &n1,const
 	getVelocityVersor_A(stp,vnew);
 	vec3dRT pol;
 	getPolarizationDirection_A(stp,pol);
-	double T = getKineticEnergy_A(stp);
+	// vec3dRT Y(0,1,0);
+	cout <<vnew << endl;
+	cout <<pol << endl;
+	cout << dot(vnew, pol) << endl;
+	tuple<double, double, double> angles = compton_scattering(stp);
 
-	vec3dRT Z(0,0,1);
-	cout << Compton(stp, T) << endl;
+	// vec3dRT new_direction = pol*cos(get<1>(angles)) + Y*sin(get<1>(angles)) + vnew*cos(get<0>(angles));
 
-	// vec3dRT rotated = rotate(vnew, 45.0*M_PI/180.0, Z);
-	vec3dRT rotated = rotate(vnew, Compton(stp, T), Z);
-	setDirection_B(stp, rotated) ;
+	cout << get<0>(angles) << " " << get<1>(angles) << " " << get<2>(angles) << endl;
 
-	pushParticle(stp,PHOTON_ID,T,rotated);
-	extinguishRay(stp);
+	// cout << acos(dot(vnew, new_direction)) << endl;
 
+	// cout << acos(dot(new_direction - new_direction*dot(vnew, new_direction), pol)) << endl;
+
+	vec3dRT rotated = rotate(vnew, get<0>(angles), cross(vnew,pol));
+	// rotated = rotate(rotated, get<1>(angles), vnew);
+
+	cout << acos(dot(rotated, vnew)) << endl;
+
+	// setDirection_B(stp, rotated) ;
 	// cout<<"v0 "<<vnew<<endl;
 	//pushParticle(stp,ELECTRON_ID,getKineticEnergy_A(stp)/4,v0);
 	// cout<<"ciao "<<getUID(stp)<<' '<<getKineticEnergy_A(stp)<<' '<<pol<<' '<<getTime_A(stp)<<endl;
@@ -130,14 +138,15 @@ vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis){
 	// (1-ca)*dy*dx+sa*dz, ca+(1-ca)*dy*dy, (1-ca)*dy*dz-sa*dx,
 	// (1-ca)*dz*dx-sa*dy, (1-ca)*dz*dy+sa*dx, ca+(1-ca)*dz*dz,
 
-	return vec3dRT(	  ca+(1-ca)*dx*dx*v[0]	+ (1-ca)*dx*dy-sa*dz*v[1] 	+ (1-ca)*dx*dz+sa*dy*v[2],
-				   (1-ca)*dy*dx+sa*dz*v[0] 	+ ca+(1-ca)*dy*dy*v[1] 		+ (1-ca)*dy*dz-sa*dx*v[2],
-				   (1-ca)*dz*dx-sa*dy*v[0] 	+ (1-ca)*dz*dy+sa*dx*v[1] 	+ ca+(1-ca)*dz*dz*v[2]);
+	return vec3dRT(	  (ca+(1-ca)*dx*dx)*v[0]	+ ((1-ca)*dx*dy-sa*dz)*v[1] 	+ ((1-ca)*dx*dz+sa*dy)*v[2],
+				   ((1-ca)*dy*dx+sa*dz)*v[0] 	+ (ca+(1-ca)*dy*dy)*v[1] 		+ ((1-ca)*dy*dz-sa*dx)*v[2],
+				   ((1-ca)*dz*dx-sa*dy)*v[0] 	+ ((1-ca)*dz*dy+sa*dx)*v[1] 	+ (ca+(1-ca)*dz*dz)*v[2]);
 
 }
 
-float Compton(Step *stp, double energy){
+tuple<double, double, double> compton_scattering(Step *stp){
 
+	double energy = getKineticEnergy_A(stp);
 	energy = energy*1000.0;
 
     double Mec2 = 510.99895000;
@@ -173,30 +182,35 @@ float Compton(Step *stp, double energy){
 
     } while( greject < r3);
 
-    return acos(1 - onecos_t);
+
+    double compton_angle = acos(1 - onecos_t);
+    double scattered_energy = epsilon*energy;
+
+
+
+
+    double b = scattered_energy + 1.0/scattered_energy;
+    double a = (sin(compton_angle),2);
+
+    double X;
+    double prob;
+    double r4;
+
+    do{
+        r4 = getRandUnif(stp) * 2 * M_PI;
+        X = getRandUnif(stp)*a*b;
+
+        double b = epsilon + 1.0/epsilon;
+    	double a = pow(sin(compton_angle),2);
+
+        prob = 1 - pow(cos(r4),2)*2*a/b;
+    } while(X > prob);
+
+   double azimutlal_angle = r4;
+
+   return tuple<double, double, double> {compton_angle, azimutlal_angle, scattered_energy/1000.0};
+
 }
-
-
-// void generateAzimuthal(double Compton, Step *stp){
-
-
-// //    double epsilon = ScatteredGammaEnergy(511, 1.4137)/ 511.0;
-
-//     double b = epsilon + 1.0/epsilon;
-//     double a = (sin(Compton),2);
-
-//     double X;
-//     double prob;
-//     double r1;
-
-//     for(int i=0; i<pow(10,6); i++){
-//         do{
-//             r1 = getRandUnif(stp) * 2 * M_PI;
-//             X = getRandUnif(stp)*a*b;
-
-//             // prob = P(Compton, epsilon, r1);
-//         } while(X > prob);
-//     }
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -252,8 +266,9 @@ extern "C" int UserHook_source(int argc,const char *argv[]){
 
 	for(int iprim=0;iprim<nprimbatch;iprim++){
 		vec3dRT O(0, 0, 0);
-		vec3dRT v(1, 0, 0);
-		vec3dRT polarization(0,0,1);
+		vec3dRT v(1, 1, 0);
+		vec3dRT polarization, n3;
+		triad(v, polarization, n3);
 		double time = 0;
 		float wei = 1;
 		uint64 randState = pluginGetOneSeed();
