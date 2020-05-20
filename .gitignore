@@ -6,4 +6,27 @@ syntax: glob
 .DS_Store
 test/*
 out/*
+._*
+libFredXfuncInterface_*.a
+plugin_orig
+version.h
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
 
+
+###### ignore files that are maintained internally by fred ######
+Arr3d.h
+FredXfunc.h
+idx3d.h
+ParticleID.h
+Scorer.h
+types.h
+vector3d.h

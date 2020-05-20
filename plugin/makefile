@@ -13,7 +13,7 @@ endif
 
 
 plugin-lib:
-	g++ -O2 -Wall -shared -fPIC -o libFredXfunc.so myplugin.cpp $(PLUGINLIB)
+	g++ -std=c++11 -O2 -Wall -shared -fPIC -o libFredXfunc.so myplugin.cpp $(PLUGINLIB)
 
 clean:
 	rm -f *.o libFredXfunc.so

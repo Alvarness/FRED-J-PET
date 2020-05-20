@@ -12,6 +12,8 @@
 #include <fstream>
 using namespace std;
 
+std::tuple<double, double, double> compton_scattering(Step *stp);
+vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis);
 
 //========================================================================================
 //=================      PLUGIN VARIABLES and DATA STRUCTURES     ========================
