@@ -107,7 +107,7 @@ void interactionEvent_Photon(Step *stp){
 	pol = versor(pol);
 	vec3dRT n3 = versor(cross(incoming, pol));
 
-	cout << dot(incoming, pol)<< "vectors -> " << incoming << " " << pol << endl;
+	cout << dot(incoming, pol)<< " vectors -> " << incoming << " " << pol << endl;
 
 	tuple<double, double, double, vec3dRT> angles = compton_scattering(stp);
 
@@ -121,8 +121,8 @@ void interactionEvent_Photon(Step *stp){
 	setKineticEnergy_B(stp, get<2>(angles));
 	setPolarizationDirection_B(stp, new_pol);
 
-	pushParticle(stp,PHOTON_ID,getKineticEnergy_B(stp), new_direction);
-	extinguishRay(stp);
+	// pushParticle(stp,PHOTON_ID,getKineticEnergy_B(stp), new_direction);
+	// extinguishRay(stp);
 
 	cout << get<0>(angles) << " " << get<1>(angles) << " " << get<2>(angles) << endl;
 
@@ -146,9 +146,10 @@ void interactionEvent_Photon(Step *stp){
 	double T_in = getKineticEnergy_A(stp);
 	double T_out = getKineticEnergy_B(stp);
 	double time_A = getTime_A(stp);
-
-	ftracks_phot << pol << ' ' <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
-		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl;
+	vec3dRT pol2;
+	getPolarizationDirection_B(stp,pol2);
+	ftracks_phot << pol << '\t' << pol2 << '\t' << new_pol << endl <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
+		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl << endl;
 
 }
 
