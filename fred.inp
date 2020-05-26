@@ -12,7 +12,7 @@ lDefaultField=f
 region: room ; material = vacuum
 
 
-deliver: usersource 1e1 arg2
+deliver: usersource 1e0 arg2
 /deliver: usersource 1e2 arg2
 /deliver: usersource 1e2 arg2
 

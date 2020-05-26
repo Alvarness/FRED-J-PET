@@ -42,6 +42,7 @@ extern "C" int UserHook_close(){
 	cout<<magentacolor;
 	cout<<endl<<"Plugin user close:"<<endl;
 	cout<<normalcolor;
+	ftracks_phot.close();
 	return 0; // return value is ignored
 }
 
@@ -50,14 +51,15 @@ int lastTracked;
 extern "C" void  UserHook_step_aft(Step *stp){
 	vec3dRT xi;
 	getPosition_A(stp,xi);
-	double T = getKineticEnergy_A(stp);
+	double T_in = getKineticEnergy_A(stp);
+	double T_out = getKineticEnergy_B(stp);
+	double time_A = getTime_A(stp);
 	if(xi.z<0) return;
 	int type = getType(stp);
 
 	if(type!=GHOST_ID) lastTracked = type;
-	if(type==PHOTON_ID)   ftracks_phot<<xi<<' '<<T<<' '<<endl;
-
-	// cout<<getUID(stp)<<' '<<getParentUID(stp)<<' '<<getAncestorUID(stp)<<' '<<type<<' '<<getParticle_generation(stp)<<endl;
+	// if(type==PHOTON_ID)   ftracks_phot << xi << ' ' << T_in - T_out << ' ' << time_A << " " \
+	// 	<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl;
 	if(type==PHOTON_ID) {
 		setStepDeltaTime(stp,getStepLength(stp)/3e10);
 		// cout<<"time now "<<getUID(stp)<<' '<<getTime_B(stp)<<endl;
@@ -69,10 +71,10 @@ extern "C" void  UserHook_step_final(Step *stp){
 	getPosition_A(stp,xi);
 	double T = getKineticEnergy_A(stp);
 
-	if(lastTracked==PHOTON_ID) {
-		ftracks_phot<<xi<<' '<<T<<' '<<endl;
-		ftracks_phot<<endl;
-	}
+	// if(lastTracked==PHOTON_ID) {
+	// 	ftracks_phot<<xi<<' '<<T<<' '<<endl;
+	// 	ftracks_phot<<endl;
+	// }
 }
 
 float massAttenuation_photon(Step *stp){
@@ -86,7 +88,8 @@ float massAttenuation_photon(Step *stp){
 
 	if(currReg.rfind("scint")==0){
 		// cout<<currReg<<endl;
-		mu_rho_tot_material = 0.09443;
+		// mu_rho_tot_material = 0.09443;
+		mu_rho_tot_material = 4.5443;
 
 	}
 
@@ -95,56 +98,66 @@ float massAttenuation_photon(Step *stp){
 
 
 
-void interactionEvent_Photon(Step *stp,const vec3dRT &v0,const vec3dRT &n1,const vec3dRT &n2){
-	vec3dRT vnew;
-	getVelocityVersor_A(stp,vnew);
+void interactionEvent_Photon(Step *stp){
+	vec3dRT incoming;
+	getVelocityVersor_A(stp,incoming);
+	incoming = versor(incoming);
 	vec3dRT pol;
 	getPolarizationDirection_A(stp,pol);
-	// vec3dRT Y(0,1,0);
-	cout <<vnew << endl;
-	cout <<pol << endl;
-	cout << dot(vnew, pol) << endl;
-	tuple<double, double, double> angles = compton_scattering(stp);
+	pol = versor(pol);
+	vec3dRT n3 = versor(cross(incoming, pol));
 
-	// vec3dRT new_direction = pol*cos(get<1>(angles)) + Y*sin(get<1>(angles)) + vnew*cos(get<0>(angles));
+	cout << dot(incoming, pol)<< "vectors -> " << incoming << " " << pol << endl;
+
+	tuple<double, double, double, vec3dRT> angles = compton_scattering(stp);
+
+	vec3dRT new_direction = versor(pol*sin(get<0>(angles))*cos(get<1>(angles)) + n3*sin(get<0>(angles))*sin(get<1>(angles)) + incoming*cos(get<0>(angles)));
+
+	vec3dRT new_pol = versor(pol*get<3>(angles)[0] + n3*get<3>(angles)[1] + incoming*get<3>(angles)[2]);
+
+	new_pol = versor(new_pol - new_direction*dot(new_pol, new_direction));
+
+	setDirection_B(stp, new_direction);
+	setKineticEnergy_B(stp, get<2>(angles));
+	setPolarizationDirection_B(stp, new_pol);
+
+	pushParticle(stp,PHOTON_ID,getKineticEnergy_B(stp), new_direction);
+	extinguishRay(stp);
 
 	cout << get<0>(angles) << " " << get<1>(angles) << " " << get<2>(angles) << endl;
 
-	// cout << acos(dot(vnew, new_direction)) << endl;
+	cout << acos(dot(incoming, new_direction)) << " ";
 
-	// cout << acos(dot(new_direction - new_direction*dot(vnew, new_direction), pol)) << endl;
+	cout << acos(dot(versor((new_direction - incoming*dot(new_direction, incoming))), pol)) << endl;
 
-	vec3dRT rotated = rotate(vnew, get<0>(angles), cross(vnew,pol));
-	// rotated = rotate(rotated, get<1>(angles), vnew);
+	cout << dot(new_pol, new_direction) << endl;
 
-	cout << acos(dot(rotated, vnew)) << endl;
+	cout << "/*--------------------*/" << endl;
 
-	// setDirection_B(stp, rotated) ;
+
 	// cout<<"v0 "<<vnew<<endl;
-	//pushParticle(stp,ELECTRON_ID,getKineticEnergy_A(stp)/4,v0);
 	// cout<<"ciao "<<getUID(stp)<<' '<<getKineticEnergy_A(stp)<<' '<<pol<<' '<<getTime_A(stp)<<endl;
-	// extinguishRay(stp);
+
+	// setDirection_B(stp, new_direction);
+	// setKineticEnergy_B(stp, get<2>(angles));
+
+	vec3dRT xi;
+	getPosition_A(stp,xi);
+	double T_in = getKineticEnergy_A(stp);
+	double T_out = getKineticEnergy_B(stp);
+	double time_A = getTime_A(stp);
+
+	ftracks_phot << pol << ' ' <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
+		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl;
+
 }
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis){
-	float sa = sin(angle), ca = cos(angle);
-	float ll = norm(axis);
-	float dx = axis[0]/ll, dy = axis[1]/ll, dz = axis[2]/ll;
+tuple<double, double, double, vec3dRT> compton_scattering(Step *stp){
 
-	// ca+(1-ca)*dx*dx, (1-ca)*dx*dy-sa*dz, (1-ca)*dx*dz+sa*dy,
-	// (1-ca)*dy*dx+sa*dz, ca+(1-ca)*dy*dy, (1-ca)*dy*dz-sa*dx,
-	// (1-ca)*dz*dx-sa*dy, (1-ca)*dz*dy+sa*dx, ca+(1-ca)*dz*dz,
-
-	return vec3dRT(	  (ca+(1-ca)*dx*dx)*v[0]	+ ((1-ca)*dx*dy-sa*dz)*v[1] 	+ ((1-ca)*dx*dz+sa*dy)*v[2],
-				   ((1-ca)*dy*dx+sa*dz)*v[0] 	+ (ca+(1-ca)*dy*dy)*v[1] 		+ ((1-ca)*dy*dz-sa*dx)*v[2],
-				   ((1-ca)*dz*dx-sa*dy)*v[0] 	+ ((1-ca)*dz*dy+sa*dx)*v[1] 	+ (ca+(1-ca)*dz*dz)*v[2]);
-
-}
-
-tuple<double, double, double> compton_scattering(Step *stp){
+	/*----------  Generate Compton scattering angle  ----------*/
 
 	double energy = getKineticEnergy_A(stp);
 	energy = energy*1000.0;
@@ -153,7 +166,7 @@ tuple<double, double, double> compton_scattering(Step *stp){
 
     double E0 = energy / Mec2;
 
-    double epsilon, onecos_t, sin2_t, greject;
+    double epsilon, onecos_t, SinSqrTh, greject;
     double epsilon0 = 1 / (1 + 2. * E0);
     double epsilon0sq = pow(epsilon0,2);
 
@@ -177,8 +190,8 @@ tuple<double, double, double> compton_scattering(Step *stp){
         }
 
         onecos_t = (1 - epsilon)/(epsilon);
-        sin2_t = onecos_t*(2 - onecos_t);
-        greject = 1 - (sin2_t*epsilon)/(1 + pow(epsilon, 2));
+        SinSqrTh = onecos_t*(2 - onecos_t);
+        greject = 1 - (SinSqrTh*epsilon)/(1 + pow(epsilon, 2));
 
     } while( greject < r3);
 
@@ -187,6 +200,7 @@ tuple<double, double, double> compton_scattering(Step *stp){
     double scattered_energy = epsilon*energy;
 
 
+    /*----------  Generate azimuthal scattering angle   ----------*/
 
 
     double b = scattered_energy + 1.0/scattered_energy;
@@ -206,12 +220,85 @@ tuple<double, double, double> compton_scattering(Step *stp){
         prob = 1 - pow(cos(r4),2)*2*a/b;
     } while(X > prob);
 
-   double azimutlal_angle = r4;
+	double azimutlal_angle = r4;
 
-   return tuple<double, double, double> {compton_angle, azimutlal_angle, scattered_energy/1000.0};
+	/*----------  Generate polarization direction of scattered photon ----------*/
+
+
+	double rand1 = getRandUnif(stp);
+	double rand2 = getRandUnif(stp);
+
+	double theta;
+
+	double sinTheta = sin(compton_angle);
+	double cosTheta = cos(compton_angle);
+
+	double cosPhi = cos(azimutlal_angle);
+	double sinPhi = sin(azimutlal_angle);
+
+	double cosSqrPhi = cosPhi*cosPhi;
+	double normalisation = sqrt(1. - cosSqrPhi*SinSqrTh);
+
+	if (rand1 < (epsilon+1.0/epsilon-2) / (2.0*(epsilon+1.0/epsilon)-4.0*SinSqrTh*cosSqrPhi) ){
+
+    	if (rand2<0.5) theta = M_PI/2.0;
+
+    	else theta = 3.0*M_PI/2.0;
+
+    } else {
+
+     	if (rand2<0.5) theta = 0.;
+
+    	else theta = M_PI;
+    }
+
+    double cosBeta = cos(theta);
+ 	double sinBeta = sqrt(1-cosBeta*cosBeta);
+
+ 	double xParallel = normalisation*cosBeta;
+	double yParallel = -(SinSqrTh*cosPhi*sinPhi)*cosBeta/normalisation;
+	double zParallel = -(cosTheta*sinTheta*cosPhi)*cosBeta/normalisation;
+	double xPerpendicular = 0.;
+	double yPerpendicular = (cosTheta)*sinBeta/normalisation;
+	double zPerpendicular = -(sinTheta*sinPhi)*sinBeta/normalisation;
+
+	double xTotal = (xParallel + xPerpendicular);
+	double yTotal = (yParallel + yPerpendicular);
+	double zTotal = (zParallel + zPerpendicular);
+
+	vec3dRT newPolarizationDirection (xTotal, yTotal, zTotal);
+
+   return tuple<double, double, double, vec3dRT> {compton_angle, azimutlal_angle - M_PI, scattered_energy/1000.0, newPolarizationDirection};
 
 }
 
+
+// void SystemOfRefChange(	vec3dRT& incoming,
+// 						vec3dRT& scattered,
+// 						vec3dRT& pol,
+// 						vec3dRT& new_pol){
+//   // direction0 is the original photon direction ---> z
+//   // polarization0 is the original photon polarization ---> x
+//   // need to specify y axis in the real reference frame ---> y
+// 	vec3dRT Axis_Z0 = incoming;
+// 	vec3dRT Axis_X0 = pol;
+// 	vec3dRT Axis_Y0 = versor(cross(incoming, pol));
+
+//   	double direction_x = scattered[0];
+//   	double direction_y = scattered[1];
+//   	double direction_z = scattered[2];
+
+//   	scattered = versor(Axis_X0*direction_x + Axis_Y0*direction_y + Axis_Z0*direction_z);
+
+//   	double polarization_x = new_pol[0];
+//   	double polarization_y = new_pol[1];
+//   	double polarization_z = new_pol[2];
+
+//   	new_pol = versor(Axis_X0*polarization_x + Axis_Y0*polarization_y + Axis_Z0*polarization_z);
+
+//   	// cout << dot(incoming, pol) << " "  << " " << dot(new_pol, scattered) << " zz" << endl;
+
+// }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -229,21 +316,21 @@ extern "C" float  UserHook_Mass_Attenuation(Step *stp){
 
 extern "C" void  UserHook_dint_event(Step *stp){
 	// prepare particle FoR
-	vec3dRT v0,n1,n2;
+	vec3dRT v0;
 	getVelocityVersor_A(stp,v0);
-	triad(v0,n1,n2);
+	// // triad(v0,n1,n2);
 
-	// vec3dRT epsilon,n3;
-	// getPolarizationDirection_A(stp,epsilon);
+	vec3dRT epsilon;
+	getPolarizationDirection_A(stp,epsilon);
 	// n3 = cross(v0,epsilon);
 
-	// cout<<"ciao"<<endl;
+	cout<<"dint "<< dot(v0, epsilon) << endl;
 
 
 	// dispatch event
 	switch(getType(stp)){
 		case PHOTON_ID:
-			interactionEvent_Photon(stp,v0,n1,n2);
+			interactionEvent_Photon(stp);
 		break;
 		default: break;
 	}
