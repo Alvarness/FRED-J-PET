@@ -87,9 +87,8 @@ float massAttenuation_photon(Step *stp){
 	string currReg = getRegion_A(stp);
 
 	if(currReg.rfind("scint")==0){
-		// cout<<currReg<<endl;
-		// mu_rho_tot_material = 0.09443;
-		mu_rho_tot_material = 4.5443;
+
+		mu_rho_tot_material =calculate_mass_attenuation_coefficient(T);
 
 	}
 
@@ -107,7 +106,6 @@ void interactionEvent_Photon(Step *stp){
 	pol = versor(pol);
 	vec3dRT n3 = versor(cross(incoming, pol));
 
-	cout << dot(incoming, pol)<< " vectors -> " << incoming << " " << pol << endl;
 
 	tuple<double, double, double, vec3dRT> angles = compton_scattering(stp);
 
@@ -121,25 +119,9 @@ void interactionEvent_Photon(Step *stp){
 	setKineticEnergy_B(stp, get<2>(angles));
 	setPolarizationDirection_B(stp, new_pol);
 
-	// pushParticle(stp,PHOTON_ID,getKineticEnergy_B(stp), new_direction);
-	// extinguishRay(stp);
 
-	cout << get<0>(angles) << " " << get<1>(angles) << " " << get<2>(angles) << endl;
-
-	cout << acos(dot(incoming, new_direction)) << " ";
-
-	cout << acos(dot(versor((new_direction - incoming*dot(new_direction, incoming))), pol)) << endl;
-
-	cout << dot(new_pol, new_direction) << endl;
-
-	cout << "/*--------------------*/" << endl;
-
-
-	// cout<<"v0 "<<vnew<<endl;
-	// cout<<"ciao "<<getUID(stp)<<' '<<getKineticEnergy_A(stp)<<' '<<pol<<' '<<getTime_A(stp)<<endl;
-
-	// setDirection_B(stp, new_direction);
-	// setKineticEnergy_B(stp, get<2>(angles));
+	extinguishRay(stp);
+	pushParticle_extended(stp,PHOTON_ID,getKineticEnergy_B(stp), new_direction, new_pol);
 
 	vec3dRT xi;
 	getPosition_A(stp,xi);
@@ -148,7 +130,7 @@ void interactionEvent_Photon(Step *stp){
 	double time_A = getTime_A(stp);
 	vec3dRT pol2;
 	getPolarizationDirection_B(stp,pol2);
-	ftracks_phot << pol << '\t' << pol2 << '\t' << new_pol << endl <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
+	ftracks_phot << pol << '\t' << pol2 << '\t' << new_pol << endl << incoming << endl <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
 		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl << endl;
 
 }
@@ -273,33 +255,69 @@ tuple<double, double, double, vec3dRT> compton_scattering(Step *stp){
 
 }
 
-
-// void SystemOfRefChange(	vec3dRT& incoming,
-// 						vec3dRT& scattered,
-// 						vec3dRT& pol,
-// 						vec3dRT& new_pol){
-//   // direction0 is the original photon direction ---> z
-//   // polarization0 is the original photon polarization ---> x
-//   // need to specify y axis in the real reference frame ---> y
-// 	vec3dRT Axis_Z0 = incoming;
-// 	vec3dRT Axis_X0 = pol;
-// 	vec3dRT Axis_Y0 = versor(cross(incoming, pol));
-
-//   	double direction_x = scattered[0];
-//   	double direction_y = scattered[1];
-//   	double direction_z = scattered[2];
-
-//   	scattered = versor(Axis_X0*direction_x + Axis_Y0*direction_y + Axis_Z0*direction_z);
-
-//   	double polarization_x = new_pol[0];
-//   	double polarization_y = new_pol[1];
-//   	double polarization_z = new_pol[2];
-
-//   	new_pol = versor(Axis_X0*polarization_x + Axis_Y0*polarization_y + Axis_Z0*polarization_z);
-
-//   	// cout << dot(incoming, pol) << " "  << " " << dot(new_pol, scattered) << " zz" << endl;
-
-// }
+double calculate_mass_attenuation_coefficient(double x) {
+   const int fNp = 36, fKstep = 0;
+   const double fDelta = -1, fXmin = 0.001, fXmax = 20;
+   const double fX[36] = { 0.001, 0.0015, 0.002, 0.003, 0.004,
+                        0.005, 0.006, 0.008, 0.01, 0.015,
+                        0.02, 0.03, 0.04, 0.05, 0.06,
+                        0.08, 0.1, 0.15, 0.2, 0.3,
+                        0.4, 0.5, 0.6, 0.8, 1,
+                        1.25, 1.5, 2, 3, 4,
+                        5, 6, 8, 10, 15,
+                        20 };
+   const double fY[36] = { 2024, 640.9, 277, 82.7, 34.61,
+                        17.53, 10.05, 4.22, 2.204, 0.7705,
+                        0.4358, 0.2647, 0.2194, 0.1997, 0.1881,
+                        0.1736, 0.1635, 0.1458, 0.1331, 0.1155,
+                        0.1034, 0.09443, 0.08732, 0.07668, 0.06894,
+                        0.06166, 0.05611, 0.0481, 0.03848, 0.03282,
+                        0.02907, 0.02641, 0.0229, 0.02069, 0.0177,
+                        0.01624 };
+   const double fB[36] = { -4.40753e+06, -1.43594e+06, -330729, -93454.1, -22624.3,
+                        -11558.6, -4821.13, -1580.93, -624.145, -98.7565,
+                        -41.749, -4.96336, -3.31761, -1.26622, -1.00752,
+                        -0.557452, -0.452675, -0.287149, -0.22273, -0.141322,
+                        -0.102981, -0.0788551, -0.0639988, -0.0444968, -0.033714,
+                        -0.0251511, -0.0196418, -0.0131071, -0.00705407, -0.00451666,
+                        -0.0031093, -0.00227614, -0.00134953, -0.000905717, -0.000367641,
+                        -0.000293717 };
+   const double fC[36] = { 3.90479e+09, 2.0384e+09, 1.72012e+08, 6.52626e+07, 5.56726e+06,
+                        5.49841e+06, 1.2391e+06, 381003, 97389.4, 7688.37,
+                        3713.13, -34.5674, 199.143, 5.99566, 19.8744,
+                        2.62891, 2.60996, 0.700555, 0.587823, 0.226253,
+                        0.157164, 0.084091, 0.0644722, 0.0330379, 0.0208761,
+                        0.0133756, 0.00866134, 0.00440818, 0.0016448, 0.000892613,
+                        0.000514744, 0.000318412, 0.000144893, 7.70152e-05, 3.06e-05,
+                        5 };
+   const double fD[36] = { -1.24426e+12, -1.24426e+12, -3.55833e+10, -1.98984e+10, -2.29478e+07,
+                        -1.41977e+09, -1.43016e+08, -4.7269e+07, -5.98007e+06, -265017,
+                        -124923, 7790.34, -6438.24, 462.625, -287.425,
+                        -0.315778, -12.7294, -0.751543, -1.20523, -0.230298,
+                        -0.243577, -0.0653959, -0.0523905, -0.0202697, -0.0100006,
+                        -0.00628574, -0.00283544, -0.000921125, -0.00025073, -0.000125957,
+                        -6.5444e-05, -2.89197e-05, -1.1313e-05, -3.09435e-06, -3.09435e-06,
+                        2.39746 };
+   int klow=0;
+   if(x<=fXmin) klow=0;
+   else if(x>=fXmax) klow=fNp-1;
+   else {
+     if(fKstep) {
+       // Equidistant knots, use histogramming
+       klow = int((x-fXmin)/fDelta);
+       if (klow < fNp-1) klow = fNp-1;
+     } else {
+       int khig=fNp-1, khalf;
+       // Non equidistant knots, binary search
+       while(khig-klow>1)
+         if(x>fX[khalf=(klow+khig)/2]) klow=khalf;
+         else khig=khalf;
+     }
+   }
+   // Evaluate now
+   double dx=x-fX[klow];
+   return (fY[klow]+dx*(fB[klow]+dx*(fC[klow]+dx*fD[klow])));
+}
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -324,9 +342,6 @@ extern "C" void  UserHook_dint_event(Step *stp){
 	vec3dRT epsilon;
 	getPolarizationDirection_A(stp,epsilon);
 	// n3 = cross(v0,epsilon);
-
-	cout<<"dint "<< dot(v0, epsilon) << endl;
-
 
 	// dispatch event
 	switch(getType(stp)){
@@ -353,29 +368,31 @@ extern "C" int UserHook_source(int argc,const char *argv[]){
 	cout<<"Adding primary particles from "<<numAddedPrimary<<" to "<<numAddedPrimary+nprimbatch-1<<endl;
 
 	for(int iprim=0;iprim<nprimbatch;iprim++){
-		vec3dRT O(0, 0, 0);
-		vec3dRT v(1, 1, 0);
-		vec3dRT polarization, n3;
-		triad(v, polarization, n3);
-		double time = 0;
-		float wei = 1;
-		uint64 randState = pluginGetOneSeed();
-		double T = 0.511;
-		addPrimary_extended(PHOTON_ID,O,v,T,randState,wei,time,polarization);
-
-
-
-		// vec3dRT O(0,0,0);
-		// float theta = pluginRandUnif(0,2*M_PI);
-		// float phi = acos(1 - pluginRandUnif(0,2));
-		// vec3dRT v(sin(phi)*cos(theta), sin(phi)*sin(theta), cos(phi));
-		// vec3dRT polarization(0,0,1);
+		// vec3dRT O(0, 0, 0);
+		// vec3dRT v(1, 1, 0);
+		// vec3dRT polarization, n3;
+		// triad(v, polarization, n3);
 		// double time = 0;
 		// float wei = 1;
 		// uint64 randState = pluginGetOneSeed();
 		// double T = 0.511;
 		// addPrimary_extended(PHOTON_ID,O,v,T,randState,wei,time,polarization);
-		// addPrimary_extended(PHOTON_ID,O,-v,T,randState,wei,time,polarization);
+
+
+
+		vec3dRT O(0,0,0);
+		float theta = pluginRandUnif(0,2*M_PI);
+		float phi = acos(1 - pluginRandUnif(0,2));
+		vec3dRT v(sin(phi)*cos(theta), sin(phi)*sin(theta), cos(phi));
+		// vec3dRT polarization(0,0,1);
+		vec3dRT p1,p2;
+		triad(v, p1, p2);
+		double time = 0;
+		float wei = 1;
+		uint64 randState = pluginGetOneSeed();
+		double T = 0.511;
+		addPrimary_extended(PHOTON_ID,O,v,T,randState,wei,time,p1);
+		addPrimary_extended(PHOTON_ID,O,-v,T,randState,wei,time,p2);
 	}
 	cout<<normalcolor;
 	return numAddedPrimary+nprimbatch<totNumPrimary;

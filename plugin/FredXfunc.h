@@ -31,10 +31,7 @@ using namespace fred;
 extern "C" {
 
 tuple<double, double, double, vec3dRT> compton_scattering(Step *stp);
-// void SystemOfRefChange(vec3dRT& incoming,
-//                         vec3dRT& scattered,
-//                         vec3dRT& pol,
-//                         vec3dRT& new_pol);
+double calculate_mass_attenuation_coefficient(double x);
 
 // getter functions at the begin of the step, i.e. position A
 void	getPosition_A(Step *stp, vec3dRT &pos);
@@ -55,6 +52,7 @@ double	getMomentum_B(Step *stp);
 void    getRegion_B(Step *stp, char *name);
 void	getPolarizationDirection_B(Step *stp, vec3dRT &polarization);
 double	getTime_B(Step *stp);
+void	setPolarizationDirection_B(Step *stp, vec3dRT &polarization);
 
 void 	setStepDeltaTime(Step *stp,double dt);
 
@@ -65,7 +63,6 @@ void	setDirection_B(Step *stp,vec3dRT v) ;
 void	setKineticEnergy_B(Step *stp,double T);
 void	setMomentum_B(Step *stp,double p);
 void	setNlambda_B(Step *stp,float nl);
-void	setPolarizationDirection_B(Step *stp, vec3dRT &polarization);
 
 
 int32  getType(Step *stp); // particle ID (using PDG 2006), e.g. PROTON = 2212, etc.
@@ -106,6 +103,7 @@ int	pushParticleAtArbitraryPosition(Step *stp, int type, float T, vec3dRT v, vec
 int	addPrimary(int type,vec3dRT x, vec3dRT v,float T,uint64 randState, float wei);
 
 int	addPrimary_extended(int type,vec3dRT x, vec3dRT v,float T,uint64 randState, float wei,double time, vec3dRT polarization);
+int	pushParticle_extended(Step *stp, int type, float T, vec3dRT v,vec3dRT polarization);
 
 float  pluginRandUnif(); // samples a uniform distribution
 float  pluginRandGauss(); // samples a gaussian (normal) distribution
