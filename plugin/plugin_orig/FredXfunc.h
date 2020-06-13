@@ -3,7 +3,7 @@
 
 /*
  *  FredXfunc.h
- *  
+ *
  *  asch 2015-18
  *
  */
@@ -30,12 +30,16 @@ using namespace fred;
 
 extern "C" {
 
+tuple<double, double, double, vec3dRT> compton_scattering(Step *stp);
+double calculate_mass_attenuation_coefficient(double x);
+
+
 // getter functions at the begin of the step, i.e. position A
 void	getPosition_A(Step *stp, vec3dRT &pos);
 void	getDirection_A(Step *stp, vec3dRT &vel);
 double	getKineticEnergy_A(Step *stp);
 double	getMomentum_A(Step *stp);
-void    getRegion_A(Step *stp, string &regID);
+void    getRegion_A(Step *stp, char *name);
 void	getPolarizationDirection_A(Step *stp, vec3dRT &polarization);
 double	getTime_A(Step *stp);
 
@@ -46,7 +50,7 @@ void	getPosition_B(Step *stp, vec3dRT &pos);
 void	getDirection_B(Step *stp, vec3dRT &vel);
 double	getKineticEnergy_B(Step *stp);
 double	getMomentum_B(Step *stp);
-void    getRegion_B(Step *stp, string &regID);
+void    getRegion_B(Step *stp, char *name);
 void	getPolarizationDirection_B(Step *stp, vec3dRT &polarization);
 double	getTime_B(Step *stp);
 void	setPolarizationDirection_B(Step *stp, vec3dRT &polarization);
@@ -66,7 +70,7 @@ int32  getType(Step *stp); // particle ID (using PDG 2006), e.g. PROTON = 2212, 
 
 float  getParticle_m(Step *stp); // particle rest mass (MeV/c^2)
 float  getParticle_Z(Step *stp); // electric charge number or atomic number, i.e. number of protons (P)
-float  getParticle_A(Step *stp); // mass number, i.e. number of nucleons (P+N) 
+float  getParticle_A(Step *stp); // mass number, i.e. number of nucleons (P+N)
 
 int32  getUID(Step *stp); // particle UID (unique identifier): this labels each single particle produced and tracked
 int32  getParentUID(Step *stp); // parent UID, i.e. previous generation
@@ -94,12 +98,13 @@ void * getPluginBuff(Step *stp);
 
 uint64 getPluginRandSeed();
 
-int	pushParticle(Step *stp, int type, float T, vec3dRT v); 
+int	pushParticle(Step *stp, int type, float T, vec3dRT v);
 int	pushParticleAtArbitraryPosition(Step *stp, int type, float T, vec3dRT v, vec3dRT x);
 
 int	addPrimary(int type,vec3dRT x, vec3dRT v,float T,uint64 randState, float wei);
 
 int	addPrimary_extended(int type,vec3dRT x, vec3dRT v,float T,uint64 randState, float wei,double time, vec3dRT polarization);
+int	pushParticle_extended(Step *stp, int type, float T, vec3dRT v,vec3dRT polarization);
 
 float  pluginRandUnif(); // samples a uniform distribution
 float  pluginRandGauss(); // samples a gaussian (normal) distribution
@@ -133,9 +138,9 @@ int   getRegion_Imat(int ireg, int ivxl); // material index of the voxel
 int getImat_A(Step *stp); // get material index at initial point A
 int getImat_B(Step *stp); // get material index at final   point B
 
-float getMat_Zmean(int imat); // mean Z for the material 
+float getMat_Zmean(int imat); // mean Z for the material
 float getMat_Amean(int imat); // mean A for the material
-float getMat_RelStopPow(int imat); 
+float getMat_RelStopPow(int imat);
 
 // material nuclear composition: each element in the chemical formula corresponds to a different nucleus
 int getMatNumElements(int imat); // num of elements in the material
@@ -220,5 +225,8 @@ inline float pluginRandGauss(float mean,float stdev) // samples a gaussian distr
 
 inline vec3dRT getPosition_A(Step *stp){vec3dRT v; getPosition_A(stp,v); return v;}
 inline vec3dRT getPosition_B(Step *stp){vec3dRT v; getPosition_B(stp,v); return v;}
+
+inline string getRegion_A(Step *stp){char buff[256]; getRegion_A(stp,buff); return string(buff);}
+inline string getRegion_B(Step *stp){char buff[256]; getRegion_B(stp,buff); return string(buff);}
 
 #endif

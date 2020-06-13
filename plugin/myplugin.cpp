@@ -130,8 +130,8 @@ void interactionEvent_Photon(Step *stp){
 	double time_A = getTime_A(stp);
 	vec3dRT pol2;
 	getPolarizationDirection_B(stp,pol2);
-	ftracks_phot << pol << '\t' << pol2 << '\t' << new_pol << endl << incoming << endl <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
-		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << endl << endl;
+	ftracks_phot  <<   xi << ' ' << T_in - T_out << ' ' << time_A << ' ' \
+		<< getUID(stp) << ' ' << getParentUID(stp) << ' ' << getAncestorUID(stp) << ' ' << getGeneration(stp) << ' '  << pol << ' ' << new_pol << endl;
 
 }
 
@@ -335,20 +335,26 @@ extern "C" float  UserHook_Mass_Attenuation(Step *stp){
 
 extern "C" void  UserHook_dint_event(Step *stp){
 	// prepare particle FoR
-	vec3dRT v0;
-	getVelocityVersor_A(stp,v0);
+	// vec3dRT v0;
+	// getVelocityVersor_A(stp,v0);
 	// // triad(v0,n1,n2);
 
-	vec3dRT epsilon;
-	getPolarizationDirection_A(stp,epsilon);
+	// vec3dRT epsilon;
+	// getPolarizationDirection_A(stp,epsilon);
 	// n3 = cross(v0,epsilon);
 
 	// dispatch event
-	switch(getType(stp)){
-		case PHOTON_ID:
-			interactionEvent_Photon(stp);
-		break;
-		default: break;
+	double energy = getKineticEnergy_A(stp);
+
+	if (energy < 0.001){
+		extinguishRay(stp);
+	}else{
+		switch(getType(stp)){
+			case PHOTON_ID:
+				interactionEvent_Photon(stp);
+			break;
+			default: break;
+		}
 	}
 }
 
@@ -384,15 +390,17 @@ extern "C" int UserHook_source(int argc,const char *argv[]){
 		float theta = pluginRandUnif(0,2*M_PI);
 		float phi = acos(1 - pluginRandUnif(0,2));
 		vec3dRT v(sin(phi)*cos(theta), sin(phi)*sin(theta), cos(phi));
+		// vec3dRT v(1, 0, 0);
 		// vec3dRT polarization(0,0,1);
 		vec3dRT p1,p2;
 		triad(v, p1, p2);
 		double time = 0;
 		float wei = 1;
-		uint64 randState = pluginGetOneSeed();
+		uint64 randState1 = pluginGetOneSeed();
+		uint64 randState2 = pluginGetOneSeed();
 		double T = 0.511;
-		addPrimary_extended(PHOTON_ID,O,v,T,randState,wei,time,p1);
-		addPrimary_extended(PHOTON_ID,O,-v,T,randState,wei,time,p2);
+		addPrimary_extended(PHOTON_ID,O,v,T,randState1,wei,time,p1);
+		addPrimary_extended(PHOTON_ID,O,-v,T,randState2,wei,time,p2);
 	}
 	cout<<normalcolor;
 	return numAddedPrimary+nprimbatch<totNumPrimary;
