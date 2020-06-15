@@ -33,7 +33,10 @@ extern "C" {
 tuple<double, double, double, vec3dRT> compton_scattering(Step *stp);
 double calculate_mass_attenuation_coefficient(double x);
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 // getter functions at the begin of the step, i.e. position A
 void	getPosition_A(Step *stp, vec3dRT &pos);
 void	getDirection_A(Step *stp, vec3dRT &vel);

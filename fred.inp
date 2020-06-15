@@ -7,13 +7,13 @@ lplotray=t
 
 lDefaultField=f
 
-randSeedRoot=1546557845189553026
+/randSeedRoot=12186119389927304066
 
 region: room ; material = vacuum
 
 /trackingDebugMinUID=0
 
-deliver: usersource 1e5 arg2
+deliver: usersource 1e3 arg2
 /deliver: usersource 1e2 arg2
 /deliver: usersource 1e2 arg2
 

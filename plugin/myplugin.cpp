@@ -19,6 +19,10 @@ using namespace std;
 
 ofstream ftracks_phot;
 
+tuple<double, double, double, vec3dRT> compton_scattering(Step *stp);
+double calculate_mass_attenuation_coefficient(double x);
+
+
 //========================================================================================
 //========================================================================================
 //========================================================================================
@@ -186,24 +190,25 @@ tuple<double, double, double, vec3dRT> compton_scattering(Step *stp){
     /*----------  Generate azimuthal scattering angle   ----------*/
 
 
-    double b = scattered_energy + 1.0/scattered_energy;
-    double a = (sin(compton_angle),2);
+    double a, b;
 
-    double X;
-    double prob;
     double r4;
-
+    double prob;
+    double phi;
+    // int counts = 0;
     do{
-        r4 = getRandUnif(stp) * 2 * M_PI;
-        X = getRandUnif(stp)*a*b;
+    	// counts++;
+        phi = getRandUnif(stp) * 2 * M_PI;
+        r4 = getRandUnif(stp);
 
-        double b = epsilon + 1.0/epsilon;
-    	double a = pow(sin(compton_angle),2);
+    	a = 2*pow(sin(compton_angle),2);
+        b = epsilon + 1.0/epsilon;
 
-        prob = 1 - pow(cos(r4),2)*2*a/b;
-    } while(X > prob);
+        prob = 1 - (a/b)*pow(cos(phi),2);
 
-	double azimutlal_angle = r4;
+    } while(r4 > prob);
+    // cout << counts << " counts" << endl;
+	double azimutlal_angle = phi;
 
 	/*----------  Generate polarization direction of scattered photon ----------*/
 
