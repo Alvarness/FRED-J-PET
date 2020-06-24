@@ -7,19 +7,25 @@
 
 #include "FredXfunc.h"
 #include "Scorer.h"
+#include "Voxels.h"
 
 #include <cstdlib>
 #include <fstream>
 using namespace std;
 
-std::tuple<double, double, double> compton_scattering(Step *stp);
+std::tuple<double, double, double, vec3dRT> compton_scattering(Step *stp);
 vec3dRT rotate(const vec3dRT v, float angle, const vec3dRT axis);
+double calculate_mass_attenuation_coefficient(double x);
+
+inline int el3d(int i,int j,int k,int nn[3]) {return i+j*nn[0]+k*nn[0]*nn[1];} // column-major and contiguous 
 
 //========================================================================================
 //=================      PLUGIN VARIABLES and DATA STRUCTURES     ========================
 //========================================================================================
 
 ofstream ftracks_phot;
+
+Voxels myMap;
 
 //========================================================================================
 //========================================================================================
@@ -36,6 +42,17 @@ extern "C" int UserHook_init(const char *vers){
 // 	cout<<"myFlag = "<<getBoolParam("myFlag",false)<<endl;
 	// cout<<"myInt = "<<getIntParam("myInt",0)<<endl;
 	// cout<<"myFloat = "<<getFloatParam("myFloat",0)<<endl;
+
+	// myMap.read("test.mhd");
+	// myMap.info();
+	// Voxels newMap;
+	// newMap.clone(myMap);
+	// float *p = (float *)newMap.data;
+	// for (size_t i=0;i<newMap.N;i++) p[i]=i%32;
+	// newMap.info();
+	// newMap.write("newmap.mhd");
+	// exit(0);
+
 	cout<<endl<<normalcolor;
 	return 0; // OK
 }
@@ -189,7 +206,7 @@ tuple<double, double, double, vec3dRT> compton_scattering(Step *stp){
 
 
     double b = scattered_energy + 1.0/scattered_energy;
-    double a = (sin(compton_angle),2);
+    double a = pow(sin(compton_angle),2);
 
     double X;
     double prob;
